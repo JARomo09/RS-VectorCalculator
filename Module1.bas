@@ -32,6 +32,8 @@ Sub R_remove_item()
         Module1.DotProduct
         Module1.AdjProj
         Module1.VktrProj
+    ElseIf Not (UserForm1.ListBox1.ListCount >= 1) Then
+        MsgBox "The vector is already empty"
     Else
         UserForm1.ListBox1.Selected(UserForm1.ListBox1.ListCount - 1) = True
     End If
@@ -68,6 +70,8 @@ Sub S_remove_item()
         Module1.DotProduct
         Module1.AdjProj
         Module1.VktrProj
+    ElseIf Not (UserForm1.ListBox1.ListCount >= 1) Then
+        MsgBox "The vector is already empty"
     Else
         UserForm1.ListBox2.Selected(UserForm1.ListBox2.ListCount - 1) = True
     End If
@@ -99,7 +103,7 @@ Sub DotProduct()
 End Sub
 
 Sub AdjProj()
-    If IsNumeric(UserForm1.TextBox4.Value) Then
+    If IsNumeric(UserForm1.TextBox4.Value) And Not (CDbl(UserForm1.TextBox2.Value) = 0) Then
         UserForm1.TextBox5.Value = CDbl(UserForm1.TextBox4.Value) / CDbl(UserForm1.TextBox2.Value)
     Else
         UserForm1.TextBox5.Value = "N/A"
@@ -109,7 +113,7 @@ End Sub
 Sub VktrProj()
     Dim Skle As Double
     UserForm1.ListBox3.Clear
-    If IsNumeric(UserForm1.TextBox4.Value) Then
+    If IsNumeric(UserForm1.TextBox4.Value) And Not (CDbl(UserForm1.TextBox2.Value) = 0) Then
         Skle = (CDbl(UserForm1.TextBox4.Value) / (CDbl(UserForm1.TextBox2.Value) * CDbl(UserForm1.TextBox2.Value)))
         For i = 0 To UserForm1.ListBox1.ListCount - 1
             UserForm1.ListBox3.AddItem (UserForm1.ListBox1.List(i) * Skle)
